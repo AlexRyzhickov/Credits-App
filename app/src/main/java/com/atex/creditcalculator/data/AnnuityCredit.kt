@@ -18,12 +18,8 @@ class AnnuityCredit(val sum: Double, val months: Int, val procent: Double) {
 
     fun getData(): ArrayList<CreditData> {
 
-       /* val currentDate = Date()
-        val dateFormat: DateFormat = SimpleDateFormat("MM.yyyy", Locale.getDefault())
-        val date = dateFormat.format(currentDate)*/
-        val calendar: Calendar = GregorianCalendar(2017, 0, 25)
+        val calendar: Calendar = GregorianCalendar()
         val dateFormat: DateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
-//        val dateString = dateFormat.format(calendar.time)
 
         val list = ArrayList<CreditData>()
         var remain = sum
@@ -34,7 +30,11 @@ class AnnuityCredit(val sum: Double, val months: Int, val procent: Double) {
             if (i != months) {
                 list.add(
                     CreditData(
-                        dateFormat.format(calendar.time), monthlyPayment, interestPayment, principalDebtPayment, round(
+                        dateFormat.format(calendar.time),
+                        monthlyPayment,
+                        interestPayment,
+                        principalDebtPayment,
+                        round(
                             remain
                         )
                     )
@@ -50,7 +50,7 @@ class AnnuityCredit(val sum: Double, val months: Int, val procent: Double) {
                     )
                 )
             }
-            calendar.add(Calendar.MONTH,1)
+            calendar.add(Calendar.MONTH, 1)
         }
         return list
     }

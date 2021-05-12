@@ -1,10 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph.xml"
-    app:startDestination="@id/creditCalendar">
+    app:startDestination="@id/creditInputFragment">
 
     <fragment
         android:id="@+id/creditCalendar"
-        android:name="com.atex.creditcalculator.fragments.CreditCalendar"
-        android:label="CreditCalendar" />
+        android:name="com.atex.creditcalculator.fragments.CreditCalendarFragment"
+        android:label="CreditCalendar" >
+        <argument
+            android:name="loanAmount"
+            app:argType="integer" />
+        <argument
+            android:name="firstInstallment"
+            app:argType="integer" />
+        <argument
+            android:name="percent"
+            app:argType="float" />
+        <argument android:name="months"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/creditInputFragment"
+        android:name="com.atex.creditcalculator.fragments.CreditInputFragment"
+        android:label="CreditInputFragment" >
+        <action
+            android:id="@+id/action_creditInputFragment_to_creditCalendar"
+            app:destination="@id/creditCalendar" />
+    </fragment>
 </navigation>

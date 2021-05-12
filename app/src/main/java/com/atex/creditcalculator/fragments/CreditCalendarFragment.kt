@@ -5,34 +5,34 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.atex.creditcalculator.R
 import com.atex.creditcalculator.adapters.PayInformAdapter
 import com.atex.creditcalculator.data.AnnuityCredit
-import com.atex.creditcalculator.data.DifferentiatedCredit
-import com.atex.creditcalculator.databinding.CreditCalendarBinding
+import com.atex.creditcalculator.databinding.CreditCalendarFragmentBinding
 
-//import com.atex.databinding.
-
-class CreditCalendar : Fragment(R.layout.credit_calendar) {
+class CreditCalendarFragment : Fragment(R.layout.credit_calendar_fragment) {
 
 
-    private var _binding: CreditCalendarBinding?= null
+    private var _binding: CreditCalendarFragmentBinding?= null
     private val binding get() = _binding!!
+    private val args: CreditCalendarFragmentArgs by navArgs()
+
 
     private lateinit var adapter: PayInformAdapter
-//    private lateinit var recyclerView: RecyclerView
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = CreditCalendarBinding.inflate(inflater, container, false)
+        _binding = CreditCalendarFragmentBinding.inflate(inflater, container, false)
 
-        val credit = AnnuityCredit(300000.0, 12, 10.0)
+        val sum = (args.loanAmount - args.firstInstallment).toDouble()
+        val months = args.months
+        val percent = args.percent.toDouble()
+        val credit = AnnuityCredit(sum, months, percent)
 
         adapter = PayInformAdapter(credit.getData())
         binding.paysRecycler.adapter = adapter
