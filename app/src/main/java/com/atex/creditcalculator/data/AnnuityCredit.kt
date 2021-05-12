@@ -28,27 +28,9 @@ class AnnuityCredit(val sum: Double, val months: Int, val procent: Double) {
             val principalDebtPayment = monthlyPayment - interestPayment
             remain -= principalDebtPayment
             if (i != months) {
-                list.add(
-                    CreditData(
-                        dateFormat.format(calendar.time),
-                        monthlyPayment,
-                        interestPayment,
-                        principalDebtPayment,
-                        round(
-                            remain
-                        )
-                    )
-                )
+                list.add(CreditData(dateFormat.format(calendar.time), monthlyPayment, interestPayment, principalDebtPayment, round(remain)))
             } else {
-                list.add(
-                    CreditData(
-                        dateFormat.format(calendar.time),
-                        monthlyPayment,
-                        interestPayment,
-                        list[months - 2].remain,
-                        0.0
-                    )
-                )
+                list.add(CreditData(dateFormat.format(calendar.time), monthlyPayment, interestPayment, list[months - 2].remain, 0.0))
             }
             calendar.add(Calendar.MONTH, 1)
         }

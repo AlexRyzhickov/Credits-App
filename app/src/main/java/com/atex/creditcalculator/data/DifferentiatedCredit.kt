@@ -9,7 +9,7 @@ import kotlin.collections.ArrayList
 class DifferentiatedCredit(val sum: Double, val months: Int, val procent: Double) {
     val monthlyProcent: Double = procent / 12 / 100
     val principalDebtPayment: Double = round(sum / months)
-    val overPayment: Double = 0.0
+    var overPayment: Double = 0.0
 
 
     fun getData(): ArrayList<CreditData> {
@@ -23,7 +23,12 @@ class DifferentiatedCredit(val sum: Double, val months: Int, val procent: Double
             val interestPayment = round(remain * monthlyProcent)
             val monthlyPayment = principalDebtPayment + interestPayment
             remain -= principalDebtPayment
-            list.add(CreditData(dateFormat.format(calendar.time),monthlyPayment,interestPayment,principalDebtPayment,remain))
+            if (i != months) {
+                list.add(CreditData(dateFormat.format(calendar.time),monthlyPayment,interestPayment,principalDebtPayment,round(remain)))
+            } else {
+                list.add(CreditData(dateFormat.format(calendar.time),monthlyPayment,interestPayment,principalDebtPayment,0.0))
+            }
+            overPayment+=interestPayment
             calendar.add(Calendar.MONTH, 1)
         }
         return list
