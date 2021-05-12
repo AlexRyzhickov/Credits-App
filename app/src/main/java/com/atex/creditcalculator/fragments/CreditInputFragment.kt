@@ -54,7 +54,7 @@ class CreditInputFragment : Fragment(R.layout.credit_input_fragment) {
 
                 if (firstInstallment < loanAmount && months >= 1 && percent > 0.0f) {
                     val action =
-                        CreditInputFragmentDirections.actionCreditInputFragmentToCreditCalendar(
+                        PaymentInputFragmentDirections.actionPaymentInputFragmentToCreditCalendar(
                             loanAmount,
                             firstInstallment,
                             percent,
@@ -68,6 +68,11 @@ class CreditInputFragment : Fragment(R.layout.credit_input_fragment) {
             }else{
                 Toast.makeText(context, "Проверьте данные", Toast.LENGTH_SHORT).show()
             }
+        }
+
+        binding.openPaymentInputBtn.setOnClickListener {
+            val action = CreditInputFragmentDirections.actionCreditInputFragmentToPaymentInputFragment()
+            findNavController().navigate(action)
         }
 
         return binding.root

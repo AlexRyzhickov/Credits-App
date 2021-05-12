@@ -9,11 +9,13 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.atex.creditcalculator.R
 import com.atex.creditcalculator.databinding.CreditInputFragmentBinding
+import com.atex.creditcalculator.databinding.PaymentInputFragmentBinding
+import com.atex.creditcalculator.enums.CREDIT_TYPE
 
-class PaymentInputFragment : Fragment(R.layout.credit_input_fragment) {
+class PaymentInputFragment : Fragment(R.layout.payment_inform_layout) {
 
 
-    private var _binding: CreditInputFragmentBinding? = null
+    private var _binding: PaymentInputFragmentBinding? = null
     private val binding get() = _binding!!
 
 
@@ -22,31 +24,27 @@ class PaymentInputFragment : Fragment(R.layout.credit_input_fragment) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = CreditInputFragmentBinding.inflate(inflater, container, false)
+        _binding = PaymentInputFragmentBinding.inflate(inflater, container, false)
 
+        binding.calculationBtn.setOnClickListener {
 
-
-
-       /* binding.calculationBtn.setOnClickListener {
-
-            val loanAmountString = binding.loanAmount.text.toString()
-            val firstInstallmentString = binding.firstInstallment.text.toString()
+            val paymentString = binding.payment.text.toString()
             val monthsString = binding.months.text.toString()
             val percentString = binding.percent.text.toString()
 
-            if (loanAmountString.length > 0 && firstInstallmentString.length > 0 && monthsString.length > 0 && percentString.length > 0) {
-                val loanAmount= loanAmountString.toInt()
-                val firstInstallment = firstInstallmentString.toInt()
+            if (paymentString.length > 0 && monthsString.length > 0 && percentString.length > 0) {
+                val payment = paymentString.toInt()
                 val months= monthsString.toInt()
                 val percent = percentString.toFloat()
 
-                if (firstInstallment < loanAmount && months >= 1 && percent > 0.0f) {
+                if (payment>=0 && months >= 1 && percent > 0.0f) {
                     val action =
-                        CreditInputFragmentDirections.actionCreditInputFragmentToCreditCalendar(
-                            loanAmount,
-                            firstInstallment,
+                        PaymentInputFragmentDirections.actionPaymentInputFragmentToCreditCalendar(
+                            payment * months,
+                            0,
                             percent,
-                            months
+                            months,
+                            CREDIT_TYPE.ANNUITY_CREDIT
                         )
                     findNavController().navigate(action)
                 } else {
@@ -55,15 +53,14 @@ class PaymentInputFragment : Fragment(R.layout.credit_input_fragment) {
             }else{
                 Toast.makeText(context, "Проверьте данные", Toast.LENGTH_SHORT).show()
             }
-        }*/
+        }
+
+        binding.openCreditInputBtn.setOnClickListener {
+            val action = PaymentInputFragmentDirections.actionPaymentInputFragmentToCreditInputFragment()
+            findNavController().navigate(action)
+        }
 
         return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-
     }
 
     override fun onDestroyView() {

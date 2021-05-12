@@ -119,4 +119,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
+    <Button
+        android:id="@+id/openPaymentInputBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="@android:color/transparent"
+        android:text="Расчёт через платёж"
+        android:textColor="#535353"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calculationBtn" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

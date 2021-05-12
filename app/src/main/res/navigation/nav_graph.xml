@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph.xml"
-    app:startDestination="@id/creditInputFragment">
+    app:startDestination="@id/paymentInputFragment">
 
     <fragment
         android:id="@+id/creditCalendar"
@@ -29,5 +29,23 @@
         <action
             android:id="@+id/action_creditInputFragment_to_creditCalendar"
             app:destination="@id/creditCalendar" />
+        <action
+            android:id="@+id/action_creditInputFragment_to_paymentInputFragment"
+            app:destination="@id/paymentInputFragment"
+            app:popUpTo="@id/nav_graph.xml"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/paymentInputFragment"
+        android:name="com.atex.creditcalculator.fragments.PaymentInputFragment"
+        android:label="PaymentInputFragment" >
+        <action
+            android:id="@+id/action_paymentInputFragment_to_creditCalendar"
+            app:destination="@id/creditCalendar" />
+        <action
+            android:id="@+id/action_paymentInputFragment_to_creditInputFragment"
+            app:destination="@id/creditInputFragment"
+            app:popUpTo="@id/nav_graph.xml"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>
