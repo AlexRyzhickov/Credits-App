@@ -9,6 +9,8 @@ import kotlin.collections.ArrayList
 class DifferentiatedCredit(val sum: Double, val months: Int, val procent: Double) {
     val monthlyProcent: Double = procent / 12 / 100
     val principalDebtPayment: Double = round(sum / months)
+    val overPayment: Double = 0.0
+
 
     fun getData(): ArrayList<CreditData> {
 

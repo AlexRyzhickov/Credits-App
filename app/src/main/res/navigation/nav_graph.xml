@@ -18,6 +18,9 @@
             app:argType="float" />
         <argument android:name="months"
             app:argType="integer" />
+        <argument
+            android:name="creditType"
+            app:argType="com.atex.creditcalculator.enums.CREDIT_TYPE" />
     </fragment>
     <fragment
         android:id="@+id/creditInputFragment"
