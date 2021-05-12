@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.atex.creditcalculator.R
 import com.atex.creditcalculator.databinding.CreditInputFragmentBinding
 import com.atex.creditcalculator.enums.CREDIT_TYPE
+import com.atex.creditcalculator.enums.InputType
 
 class CreditInputFragment : Fragment(R.layout.credit_input_fragment) {
 
@@ -54,12 +55,13 @@ class CreditInputFragment : Fragment(R.layout.credit_input_fragment) {
 
                 if (firstInstallment < loanAmount && months >= 1 && percent > 0.0f) {
                     val action =
-                        PaymentInputFragmentDirections.actionPaymentInputFragmentToCreditCalendar(
+                        CreditInputFragmentDirections.actionCreditInputFragmentToCreditCalendar(
                             loanAmount,
                             firstInstallment,
                             percent,
                             months,
-                            type
+                            type,
+                            InputType.CREDIT_INPUT
                         )
                     findNavController().navigate(action)
                 } else {
@@ -84,12 +86,6 @@ class CreditInputFragment : Fragment(R.layout.credit_input_fragment) {
         val items = listOf("Аннуитетный", "Дифференцированный")
         val adapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, items)
         (binding.creditType as? AutoCompleteTextView)?.setAdapter(adapter)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-
     }
 
     override fun onDestroyView() {

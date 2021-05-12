@@ -9,7 +9,7 @@ import kotlin.math.pow
 class AnnuityCredit(val sum: Double, val months: Int, val procent: Double) {
 
     val monthlyProcent: Double = procent / 12 / 100
-    val monthlyPayment: Double = round(
+    var monthlyPayment: Double = round(
         sum * monthlyProcent * (1 + monthlyProcent).pow(months) / ((1 + monthlyProcent).pow(
             months
         ) - 1)

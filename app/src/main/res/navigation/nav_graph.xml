@@ -21,6 +21,9 @@
         <argument
             android:name="creditType"
             app:argType="com.atex.creditcalculator.enums.CREDIT_TYPE" />
+        <argument
+            android:name="inputType"
+            app:argType="com.atex.creditcalculator.enums.InputType" />
     </fragment>
     <fragment
         android:id="@+id/creditInputFragment"
@@ -28,12 +31,20 @@
         android:label="CreditInputFragment" >
         <action
             android:id="@+id/action_creditInputFragment_to_creditCalendar"
-            app:destination="@id/creditCalendar" />
+            app:destination="@id/creditCalendar"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_creditInputFragment_to_paymentInputFragment"
             app:destination="@id/paymentInputFragment"
             app:popUpTo="@id/nav_graph.xml"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/paymentInputFragment"
@@ -41,10 +52,18 @@
         android:label="PaymentInputFragment" >
         <action
             android:id="@+id/action_paymentInputFragment_to_creditCalendar"
-            app:destination="@id/creditCalendar" />
+            app:destination="@id/creditCalendar"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_paymentInputFragment_to_creditInputFragment"
             app:destination="@id/creditInputFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
             app:popUpTo="@id/nav_graph.xml"
             app:popUpToInclusive="true" />
     </fragment>

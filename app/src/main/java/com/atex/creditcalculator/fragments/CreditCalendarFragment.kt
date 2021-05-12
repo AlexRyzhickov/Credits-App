@@ -15,6 +15,7 @@ import com.atex.creditcalculator.data.AnnuityCredit
 import com.atex.creditcalculator.data.DifferentiatedCredit
 import com.atex.creditcalculator.databinding.CreditCalendarFragmentBinding
 import com.atex.creditcalculator.enums.CREDIT_TYPE
+import com.atex.creditcalculator.enums.InputType
 
 class CreditCalendarFragment : Fragment(R.layout.credit_calendar_fragment) {
 
@@ -36,9 +37,14 @@ class CreditCalendarFragment : Fragment(R.layout.credit_calendar_fragment) {
         val sum = (args.loanAmount - args.firstInstallment).toDouble()
         val months = args.months
         val percent = args.percent.toDouble()
-//        val credit = null
 
-        if (args.creditType == CREDIT_TYPE.ANNUITY_CREDIT){
+        if (args.creditType == CREDIT_TYPE.ANNUITY_CREDIT && args.inputType == InputType.CREDIT_INPUT){
+            val credit = AnnuityCredit(sum, months, percent)
+            adapter = PayInformAdapter(credit.getData())
+            binding.overPayment.text = credit.overPayment.toString()
+        }
+
+        if (args.creditType == CREDIT_TYPE.ANNUITY_CREDIT && args.inputType == InputType.PAYMENT_INPUT){
             val credit = AnnuityCredit(sum, months, percent)
             adapter = PayInformAdapter(credit.getData())
             binding.overPayment.text = credit.overPayment.toString()
@@ -50,21 +56,12 @@ class CreditCalendarFragment : Fragment(R.layout.credit_calendar_fragment) {
             binding.overPayment.text = credit.overPayment.toString()
         }
 
-//        adapter = PayInformAdapter(credit.getData())
         binding.paysRecycler.adapter = adapter
         binding.paysRecycler.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
         binding.credit.text = sum.toString()
-//        binding.overPayment.text = credit.overPayment.toString()
-
 
         return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-
     }
 
     override fun onDestroyView() {

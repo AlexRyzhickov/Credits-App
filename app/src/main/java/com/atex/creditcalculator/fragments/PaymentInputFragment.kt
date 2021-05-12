@@ -11,6 +11,7 @@ import com.atex.creditcalculator.R
 import com.atex.creditcalculator.databinding.CreditInputFragmentBinding
 import com.atex.creditcalculator.databinding.PaymentInputFragmentBinding
 import com.atex.creditcalculator.enums.CREDIT_TYPE
+import com.atex.creditcalculator.enums.InputType
 
 class PaymentInputFragment : Fragment(R.layout.payment_inform_layout) {
 
@@ -44,7 +45,8 @@ class PaymentInputFragment : Fragment(R.layout.payment_inform_layout) {
                             0,
                             percent,
                             months,
-                            CREDIT_TYPE.ANNUITY_CREDIT
+                            CREDIT_TYPE.ANNUITY_CREDIT,
+                            InputType.PAYMENT_INPUT
                         )
                     findNavController().navigate(action)
                 } else {
