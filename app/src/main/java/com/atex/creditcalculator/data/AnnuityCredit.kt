@@ -6,7 +6,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.math.pow
 
-class AnnuityCredit(val sum: Double, val months: Int, val procent: Double) {
+class AnnuityCredit(private val sum: Double, private val months: Int, private val procent: Double) {
 
     val monthlyProcent: Double = procent / 12 / 100
     var monthlyPayment: Double = round(

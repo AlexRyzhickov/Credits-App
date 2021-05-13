@@ -1,6 +1,5 @@
 package com.atex.creditcalculator.data
 
-import com.atex.creditcalculator.data.CreditData
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
