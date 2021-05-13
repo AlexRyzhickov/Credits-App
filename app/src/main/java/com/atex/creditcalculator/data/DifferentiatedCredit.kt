@@ -20,14 +20,14 @@ class DifferentiatedCredit(val sum: Double, val months: Int, val procent: Double
         var remain = sum
         for (i in 1..months) {
             val interestPayment = round(remain * monthlyProcent)
-            val monthlyPayment = principalDebtPayment + interestPayment
+            val monthlyPayment = round(principalDebtPayment + interestPayment)
             remain -= principalDebtPayment
             if (i != months) {
                 list.add(CreditData(dateFormat.format(calendar.time),monthlyPayment,interestPayment,principalDebtPayment,round(remain)))
             } else {
                 list.add(CreditData(dateFormat.format(calendar.time),monthlyPayment,interestPayment,principalDebtPayment,0.0))
             }
-            overPayment+=interestPayment
+            overPayment+=round(interestPayment)
             calendar.add(Calendar.MONTH, 1)
         }
         return list
