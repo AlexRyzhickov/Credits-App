@@ -1,1 +1,1 @@
-"# Credits-App" 
+# Credits-App
