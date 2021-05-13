@@ -1,6 +1,5 @@
 package com.atex.creditcalculator.fragments
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -46,11 +45,10 @@ class CreditInputFragment : Fragment(R.layout.credit_input_fragment) {
                 val firstInstallment = firstInstallmentString.toInt()
                 val months= monthsString.toInt()
                 val percent = percentString.toFloat()
-                var type = CREDIT_TYPE.ANNUITY_CREDIT
-                if (typeString.toString() == "Аннуитетный"){
-                    type = CREDIT_TYPE.ANNUITY_CREDIT
-                }else{
-                    type = CREDIT_TYPE.DIFFERENTIATED_CREDIT
+                val type = if (typeString.toString() == "Аннуитетный") {
+                    CREDIT_TYPE.ANNUITY_CREDIT
+                } else {
+                    CREDIT_TYPE.DIFFERENTIATED_CREDIT
                 }
 
                 if (firstInstallment < loanAmount && months >= 1 && percent > 0.0f) {
